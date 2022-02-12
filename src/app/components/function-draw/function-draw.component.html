@@ -1,0 +1,83 @@
+<div class="container w-100 p-3">
+    <div class="row">
+        <form [formGroup]="functionInputForm">
+
+            <!-- Function Grapchis -->
+            <div class="row mb-3">
+                <div class="col-md-8">
+                    <ngx-math-function-plotter [functionInput]="functionText" [maxDisplayValue]="maxDisplayValue"
+                        [width]="800" [height]="660">
+                    </ngx-math-function-plotter>
+
+                    <div class="row">
+                        <div class="col-3 mt-3">
+                            <button class="btn btn-outline-success"
+                                (click)="submit()">{{getTranslate('drawFunctionGraph')}}</button>
+                        </div>
+                        <div class="col-8 mt-3">
+
+                            <!-- Calculate -->
+                            <div class="input-group mb-3">
+                                <button class="btn btn-outline-success" type="button" id="calculatedValue"
+                                    (click)="calculate()">{{getTranslate('calculate')}}</button>
+                                <input type="number" class="form-control"
+                                    [placeholder]="getTranslate('enterAValueToCalculate')"
+                                    aria-label="Example text with button addon" aria-describedby="calculatedValue"
+                                    formControlName="calculatedValue">
+
+                                <span class="input-group-text">
+                                    {{getTranslate('result')}} : {{resultOfCalculate}}
+                                </span>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <table class="table table-hover table-striped">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>{{getTranslate('operation')}}</th>
+                                <th>{{getTranslate('symbol')}}</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let symbol of symbols; let i = index;">
+                                <td>{{i+1}}</td>
+                                <td>{{getTranslate(symbol.operation)}}</td>
+                                <td>{{symbol.syntax}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="col-8">
+                <!-- Function Input -->
+                <div class="col-11 mb-3">
+                    <label for="maxDisplayValue" class="form-label">{{getTranslate('functionInput')}}</label>
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="functionInput" formControlName="functionInput">
+                        <label for="functionInput">f(x) =</label>
+                    </div>
+                </div>
+
+                <!-- Max Display Value -->
+                <div class="col-4 mb-3">
+                    <label for="maxDisplayValue" class="form-label">{{getTranslate('enterMaxDisplayValue')}}</label>
+                    <div class="form-floating mb-3">
+                        <input type="number" class="form-control" id="maxDisplayValue"
+                            formControlName="maxDisplayValue">
+                        <label for="maxDisplayValue">{{getTranslate('maxDisplayValue')}}</label>
+                    </div>
+                </div>
+
+                
+
+            </div>
+        </form>
+
+    </div>
+</div>
